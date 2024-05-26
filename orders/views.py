@@ -31,9 +31,6 @@ class OrderListCreate(generics.ListCreateAPIView):
             return Response({'error': 'Not enough stock'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Calculate total price
-        # total_price = product_data['price'] * quantity
-
-        # Calculate total price
         product_price = Decimal(product_data['price'])
         total_price = product_price * Decimal(quantity)
 
@@ -41,7 +38,6 @@ class OrderListCreate(generics.ListCreateAPIView):
         total_price = Decimal(total_price)
 
 
-        print("total price",total_price)
         # Create the order
         order = Order.objects.create(
             user_id=user_id,
